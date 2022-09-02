@@ -48,6 +48,8 @@ public class ClientsController implements Initializable {
         private Connections connections;
     
     ObservableList<Client> liste = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<Client, Integer> tabID;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
             selecte();
@@ -62,6 +64,18 @@ public class ClientsController implements Initializable {
 
     @FXML
     private void getDelete(ActionEvent event) {
+          Client client = tableauClient.getSelectionModel().getSelectedItem();
+          if (client == null) {
+               JOptionPane.showMessageDialog(null,"veuillez choisir une conlonne");
+                 return;
+        }
+          else
+          {                
+                   liste.removeAll(client);
+                  connections.deleteArticle2(client);
+                   selecte();
+          }
+        
     }
 
     @FXML
@@ -117,8 +131,9 @@ public class ClientsController implements Initializable {
                                  String prenoms = rs.getString("prenom");
                                  Integer tele = rs.getInt("tel");
                                  String adres = rs.getString("adresse");
-                                 
-                       liste.addAll(new Client(noms, prenoms, tele, adres));
+                                 Integer id = rs.getInt("ID");
+                       liste.addAll(new Client(noms, prenoms, tele, adres,id));
+                       
               }
                      
         }
@@ -134,7 +149,8 @@ public class ClientsController implements Initializable {
           noms.setCellValueFactory(new PropertyValueFactory<>("nom"));   
           prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
           adresses.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-          telephones.setCellValueFactory(new PropertyValueFactory<>("telephone"));   
+          telephones.setCellValueFactory(new PropertyValueFactory<>("telephone"));  
+          tabID.setCellValueFactory(new PropertyValueFactory<>("id")); 
           select();
      }
 

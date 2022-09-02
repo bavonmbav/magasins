@@ -113,9 +113,24 @@ public class Connections {
     }
    public boolean deleteArticle(Article article) {
         try {
-            String deleteStatement = "DELETE FROM articles WHERE code = ?";
+            String deleteStatement = "DELETE  FROM articles WHERE code = ?";
             PreparedStatement stmts = conn.prepareStatement(deleteStatement);
             stmts.setString(1, article.getCode());
+            int res = stmts.executeUpdate();
+            if (res == 1) {
+                return true;
+            }
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+    public boolean deleteArticle2(Client client) {
+        try {
+            String deleteStatement = "DELETE  FROM clients WHERE ID=?";
+            PreparedStatement stmts = conn.prepareStatement(deleteStatement);
+            stmts.setInt(1, client.getId());
             int res = stmts.executeUpdate();
             if (res == 1) {
                 return true;

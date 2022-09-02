@@ -7,6 +7,27 @@ public class Client {
     private  String prenom;
     private  Integer telephone;
     private String adresse;
+    private  Integer id;
+
+    public Client(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Client(String nom, String prenom, Integer telephone, String adresse, Integer id) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.adresse = adresse;
+        this.id = id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Client(String nom, String prenom, Integer telephone, String adresse) {
         this.nom = nom;
