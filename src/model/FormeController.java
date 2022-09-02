@@ -33,6 +33,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
@@ -58,6 +59,8 @@ public class FormeController implements Initializable {
     private Connections connections;
     
     ObservableList<Article> liste = FXCollections.observableArrayList();
+    @FXML
+    private BorderPane parent;
       //=========recherche filter==========//
       public void rechercheFilter()
       {
@@ -323,5 +326,14 @@ public class FormeController implements Initializable {
         catch (Exception ex) {
             Logger.getLogger(FormeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void getClient(ActionEvent event) {
+         Stage stage = (Stage) parent.getScene().getWindow();
+         stage.close();
+         String page = "/vue/clients";
+          String titre = "Table client";
+          model.stage(page, titre);
     }
 }

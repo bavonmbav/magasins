@@ -35,6 +35,7 @@ public class Connections {
         createConnection();
         Connections con = new Connections();
        con.createtable();
+       createtableClient();
   }
     
     public static Connections getInstance() {
@@ -67,7 +68,32 @@ public class Connections {
  
         }
        
-    }    
+    }  
+  public static void createtableClient(){
+        final String TABLE = "clients";
+        try{
+            stmt = conn.createStatement();
+            //creer une table
+            DatabaseMetaData data = conn.getMetaData();
+            resultat = (ResultSet) data.getTables(null, null, TABLE.toLowerCase(), null);
+            if(resultat.next())
+            {
+                System.out.println("la base " + TABLE +" existe deja");
+            }else
+            {
+                stmt.execute("CREATE TABLE "+TABLE 
+                        +"(ID Integer generated always as identity, nom varchar(30),prenom varchar(30),tel Integer,adresse varchar(30), primary key(ID))");
+               
+            }
+                    System.out.println(TABLE+" a ete creer avec succes");
+                 conn.close();
+        }catch(Exception e)
+        {
+              System.err.println(e + "la table exit");
+ 
+        }
+       
+    }   
   public ResultSet execQuery(String query) {
         ResultSet result;
         try {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" fx:id="parents" prefHeight="400.0" prefWidth="600.0" stylesheets="@steel.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="model.ClientsController">
+   <children>
+      <TableView fx:id="tableauClient" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="noms" prefWidth="75.0" text="NOM" />
+          <TableColumn fx:id="prenom" prefWidth="75.0" text="PRENOM" />
+            <TableColumn fx:id="adresses" prefWidth="75.0" text="ADRESSE" />
+            <TableColumn fx:id="telephones" prefWidth="75.0" text="TELEPHONE" />
+        </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#getADD" text="Ajouter" />
+                  <MenuItem mnemonicParsing="false" onAction="#getDelete" text="Supprimer" />
+                  <MenuItem mnemonicParsing="false" onAction="#getUpdate" text="Modifier" />
+                  <MenuItem mnemonicParsing="false" onAction="#getProduit" text="Table produit" />
+                  <MenuItem mnemonicParsing="false" onAction="#getRefrsh" text="Refresh" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

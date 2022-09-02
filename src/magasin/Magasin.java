@@ -25,7 +25,7 @@ public class Magasin extends Application {
             Parent root = racine.load();
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Magasin");
+            primaryStage.setTitle("Produit");
             primaryStage.setScene(scene);
             primaryStage.show();
         }
