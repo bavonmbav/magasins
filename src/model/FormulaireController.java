@@ -2,6 +2,7 @@
 package model;
 
 import controller.Article;
+import controller.Client;
 import controller.Connections;
 import controller.Model;
 import java.io.IOException;
@@ -109,5 +110,6 @@ public class FormulaireController implements Initializable {
         Prix.setText(""+article.getPrix());
         Amballage.setText(article.getAmballage()); 
     }
+  
 }
 

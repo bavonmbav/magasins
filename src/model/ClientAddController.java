@@ -5,6 +5,7 @@
  */
 package model;
 
+import controller.Client;
 import controller.Connections;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -87,7 +88,9 @@ public class ClientAddController implements Initializable {
             Stage stage = (Stage) parent.getScene().getWindow();
             stage.close();
     }
-           
+    
+    
+     
     }  
 
 

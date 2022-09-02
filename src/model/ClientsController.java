@@ -9,6 +9,7 @@ import controller.Article;
 import controller.Client;
 import controller.Connections;
 import controller.Model;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
@@ -16,12 +17,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javax.swing.JOptionPane;
 
 
 public class ClientsController implements Initializable {
@@ -60,6 +66,34 @@ public class ClientsController implements Initializable {
 
     @FXML
     private void getUpdate(ActionEvent event) {
+          Client client = tableauClient.getSelectionModel().getSelectedItem();
+         String page = "/vue/clientUpdate";
+        if (client == null) {
+               JOptionPane.showMessageDialog(null,"veuillez choisir une conlonne");
+                 return;
+        }
+        else {
+          
+            try {
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(page+".fxml"));
+                Parent parent = loader.load();
+                ClientUpdateController controller = (ClientUpdateController) loader.getController();
+                controller.inflateUI(client);
+                Stage stage = new Stage(StageStyle.DECORATED);
+                stage.setTitle("Edit Client");
+                stage.setScene(new Scene(parent));
+                stage.show();   
+                stage.setOnHidden((e)->{
+                    getRefrsh(new ActionEvent());
+                });
+            
+            }
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
     }
 
     @FXML
@@ -109,4 +143,5 @@ public class ClientsController implements Initializable {
         selecte();
     }
 
+    
 }
